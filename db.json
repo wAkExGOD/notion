@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "users": [
+    {
+      "id": "ccac",
+      "email": "test@mail.ru",
+      "password": "12345678Aa",
+      "createdAt": 1731845574991
+    }
+  ]
+}
