@@ -1,1 +1,2 @@
-export * from "./AlbumItem"
+export * from "./AlbumItem";
+export * from "./ProtectedRoute";

@@ -1,13 +1,17 @@
-import { Toaster } from "@/components/ui"
-import { routes } from "@/lib/routes"
-import { cn } from "@/lib/utils"
-import { NavLink, Outlet } from "react-router-dom"
+import { Toaster } from "@/components/ui";
+import { AuthProvider } from "@/hooks/useAuth";
+import { routes } from "@/lib/routes";
+import { cn } from "@/lib/utils";
+import { NavLink, Outlet } from "react-router-dom";
 
-const headerLinks = [{ link: routes.users.root, label: "Users" }] as const
+const headerLinks = [
+  { link: routes.home, label: "About" },
+  { link: routes.notes.root, label: "Notes" },
+] as const;
 
 export const Root = () => {
   return (
-    <>
+    <AuthProvider>
       <div className="min-h-[100vh] flex flex-col font-sans">
         <header
           className={cn(
@@ -35,6 +39,6 @@ export const Root = () => {
         </div>
       </div>
       <Toaster />
-    </>
-  )
-}
+    </AuthProvider>
+  );
+};

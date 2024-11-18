@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { UserSkeletons } from "./UserSkeletons"
 import { User } from "./User"
 
-export const Users = () => {
+export const Notes = () => {
   const {
     data: users,
     isLoading,

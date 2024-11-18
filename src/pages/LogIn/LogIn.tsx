@@ -1,9 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { toast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui"
+import { toast } from "@/hooks/useToast";
+import { Button } from "@/components/ui";
 import {
   Form,
   FormControl,
@@ -11,62 +11,62 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui"
-import { Input } from "@/components/ui"
-import { useQuery } from "@tanstack/react-query"
-import { logIn } from "@/api/queries"
-import { UserEntityToAuth } from "@/types"
-import { useState } from "react"
-
-const FormSchema = z.object({
-  email: z.string().email("Email must be valid").min(2, {
-    message: "Email must be at least 2 characters.",
-  }),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters long")
-    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-    .regex(/\d/, "Password must contain at least one digit"),
-})
+} from "@/components/ui";
+import { Input } from "@/components/ui";
+import { useQuery } from "@tanstack/react-query";
+import { logIn } from "@/api/queries";
+import { UserEntityToAuth } from "@/types";
+import { useRef } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { LogInFormSchema } from "@/constants/authSchemas";
 
 export const LogIn = () => {
-  const [user, setUser] = useState<UserEntityToAuth>({
-    email: "",
-    password: "",
-  })
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const userRef = useRef<UserEntityToAuth>();
+  const form = useForm<z.infer<typeof LogInFormSchema>>({
+    resolver: zodResolver(LogInFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
-  })
+  });
+  const { login } = useAuth();
 
-  const { isLoading } = useQuery({
-    enabled: !!user,
-    queryKey: ["logInUser", user.email, user.password],
+  const { isLoading, refetch } = useQuery({
+    staleTime: 0,
+    enabled: Boolean(userRef?.current?.email),
+    queryKey: ["logInUser"],
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
     queryFn: async () => {
-      const data = await logIn(user)
+      if (!userRef.current) {
+        return;
+      }
+
+      const data = await logIn(userRef.current);
 
       if (!data || data.length === 0) {
-        toast({
+        return toast({
           title: "Error: Incorrect login credentials. Please try again.",
           variant: "destructive",
-        })
+        });
       }
+
+      const user = data[0];
 
       toast({
         title: "You have logged in successfully!",
-      })
+      });
 
-      return data
+      login(user);
+
+      return user;
     },
-  })
+  });
 
-  const onSubmit = async (user: z.infer<typeof FormSchema>) => {
-    setUser(user)
-  }
+  const onSubmit = async (user: z.infer<typeof LogInFormSchema>) => {
+    userRef.current = user;
+    refetch();
+  };
 
   return (
     <Form {...form}>
@@ -108,5 +108,5 @@ export const LogIn = () => {
         </form>
       </div>
     </Form>
-  )
-}
+  );
+};
