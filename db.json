@@ -1,14 +1,9 @@
 {
-  "posts": [
+  "notes": [
     {
-      "id": "1",
-      "title": "a title",
-      "views": 100
-    },
-    {
-      "id": "2",
-      "title": "another title",
-      "views": 200
+      "id": "5a8s",
+      "title": "Title of the note #1",
+      "createdAt": 1731910001835
     }
   ],
   "users": [

@@ -1,16 +1,20 @@
-export const formatDate = (date: Date) => {
+export const formatDate = (milliseconds: number, withTime: boolean = true) => {
+  const date = new Date(milliseconds)
+
   function leadingZero(token: number) {
-    return ("0" + token).slice(-2);
+    return ("0" + token).slice(-2)
   }
 
-  const year = date.getFullYear();
-  const month = leadingZero(date.getMonth() + 1);
-  const day = leadingZero(date.getDate());
-  const hours = leadingZero(date.getHours());
-  const minutes = leadingZero(date.getMinutes());
-  const seconds = leadingZero(date.getSeconds());
+  const year = date.getFullYear()
+  const month = leadingZero(date.getMonth() + 1)
+  const day = leadingZero(date.getDate())
+  const hours = leadingZero(date.getHours())
+  const minutes = leadingZero(date.getMinutes())
 
-  const result = `${day}.${month}.${year} в ${hours}:${minutes}`;
+  let result = `${day}.${month}.${year}`
+  if (withTime) {
+    result += ` ${hours}:${minutes}`
+  }
 
-  return result;
-};
+  return result
+}

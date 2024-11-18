@@ -10,7 +10,9 @@ export const Error = () => {
   return (
     <div className="h-[100dvh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-10">
-        <h1 className="font-bold text-6xl text-center">{errorMessage || "Oops! Error"}</h1>
+        <h1 className="font-bold text-6xl text-center">
+          {errorMessage || "Oops! Error"}
+        </h1>
         <Link to={routes.home}>
           <Button size="lg" variant="secondary">
             Home page

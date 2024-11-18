@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from "zod"
 
-const MIN_PASSWORD_LENGTH = 8;
+const MIN_PASSWORD_LENGTH = 8
 
 const MESSAGES = {
   EMAIL_INVALID: "Email must be valid",
@@ -9,7 +9,7 @@ const MESSAGES = {
   PASSWORD_UPPER_CASE: "Password must contain at least one uppercase letter",
   PASSWORD_LOWER_CASE: "Password must contain at least one lowercase letter",
   PASSWORDS_NOT_MATCH: "Passwords do not match",
-};
+}
 
 const authFormFields = {
   email: z.string().email(MESSAGES.EMAIL_INVALID).min(2, {
@@ -20,9 +20,9 @@ const authFormFields = {
     .min(MIN_PASSWORD_LENGTH, MESSAGES.PASSWORD_MIN_LENGTH)
     .regex(/[A-Z]/, MESSAGES.PASSWORD_UPPER_CASE)
     .regex(/[a-z]/, MESSAGES.PASSWORD_LOWER_CASE),
-};
+}
 
-export const LogInFormSchema = z.object(authFormFields);
+export const LogInFormSchema = z.object(authFormFields)
 
 export const RegistrationFormSchema = z
   .object({
@@ -32,4 +32,4 @@ export const RegistrationFormSchema = z
   .refine((data) => data.password === data.repeatPassword, {
     message: MESSAGES.PASSWORDS_NOT_MATCH,
     path: ["repeatPassword"],
-  });
+  })

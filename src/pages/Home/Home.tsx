@@ -1,13 +1,11 @@
-import { Button } from "@/components/ui";
-import { useAuth } from "@/hooks/useAuth";
-import { formatDate } from "@/lib/formatDate";
-import { routes } from "@/lib/routes";
-import { Link } from "react-router-dom";
+import { Button } from "@/components/ui"
+import { useAuth } from "@/hooks/useAuth"
+import { formatDate } from "@/lib/formatDate"
+import { routes } from "@/lib/routes"
+import { Link } from "react-router-dom"
 
 export const Home = () => {
-  const { user } = useAuth();
-
-  const date = new Date(user.createdAt);
+  const { user } = useAuth()
 
   return (
     <div className="flex flex-col gap-4">
@@ -19,12 +17,12 @@ export const Home = () => {
         </li>
         <li className="space-x-1">
           <b>Date sign up:</b>
-          <span>{formatDate(date)}</span>
+          <span>{formatDate(user.createdAt)}</span>
         </li>
       </ul>
       <Link to={routes.notes.root}>
         <Button>Go to Notes</Button>
       </Link>
     </div>
-  );
-};
+  )
+}

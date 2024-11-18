@@ -1,30 +1,30 @@
-import { createContext, PropsWithChildren, useContext, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "./useLocalStorage";
-import { UserEntity, UserEntityToAuth } from "@/types";
-import { routes } from "@/lib/routes";
+import { createContext, PropsWithChildren, useContext, useMemo } from "react"
+import { useNavigate } from "react-router-dom"
+import { useLocalStorage } from "./useLocalStorage"
+import { UserEntity, UserEntityToAuth } from "@/types"
+import { routes } from "@/lib/routes"
 
 type AuthContextType = {
-  user: UserEntity;
-  login: (user: UserEntity) => void;
-  logout: () => void;
-};
+  user: UserEntity
+  login: (user: UserEntity) => void
+  logout: () => void
+}
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [user, setUser] = useLocalStorage("user", null);
-  const navigate = useNavigate();
+  const [user, setUser] = useLocalStorage("user", null)
+  const navigate = useNavigate()
 
   const login = async (user: UserEntityToAuth) => {
-    setUser(user);
-    navigate(routes.home);
-  };
+    setUser(user)
+    navigate(routes.home)
+  }
 
   const logout = () => {
-    setUser(null);
-    navigate(routes.home, { replace: true });
-  };
+    setUser(null)
+    navigate(routes.home, { replace: true })
+  }
 
   const value = useMemo(
     () => ({
@@ -33,9 +33,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       logout,
     }),
     [user]
-  );
-  
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+  )
 
-export const useAuth = () => useContext(AuthContext) as AuthContextType;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+export const useAuth = () => useContext(AuthContext) as AuthContextType

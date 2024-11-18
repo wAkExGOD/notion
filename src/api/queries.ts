@@ -1,4 +1,4 @@
-import { UserEntity, UserEntityToAuth } from "@/types"
+import { NoteEntity, UserEntity, UserEntityToAuth } from "@/types"
 import { request } from "./request"
 
 export function logIn(user: UserEntityToAuth) {
@@ -7,8 +7,8 @@ export function logIn(user: UserEntityToAuth) {
   return request<UserEntity[]>(`/users?${params}`)
 }
 
-export function getUsers() {
-  return request<UserEntity[]>("/users")
+export function getNotes() {
+  return request<NoteEntity[]>("/notes")
 }
 
 export function getUser(id: UserEntity["id"]) {
