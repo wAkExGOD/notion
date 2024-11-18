@@ -11,7 +11,9 @@ export type UserEntityToAuth = Omit<UserEntity, "id" | "createdAt">
 
 export type NoteEntity = {
   id: string
-  title: string
+  userId: UserEntity["id"]
+  name: string
+  text: string
   createdAt: number
 }
 

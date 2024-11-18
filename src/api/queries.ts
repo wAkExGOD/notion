@@ -7,8 +7,16 @@ export function logIn(user: UserEntityToAuth) {
   return request<UserEntity[]>(`/users?${params}`)
 }
 
-export function getNotes() {
-  return request<NoteEntity[]>("/notes")
+export function getNote(id: NoteEntity["id"]) {
+  return request<NoteEntity>(`/notes/${id}`)
+}
+
+export function getNotes(userId: UserEntity["id"]) {
+  const params = new URLSearchParams({
+    userId,
+  })
+
+  return request<NoteEntity[]>(`/notes?${params}`)
 }
 
 export function getUser(id: UserEntity["id"]) {

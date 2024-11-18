@@ -18,7 +18,7 @@ import { logIn } from "@/api/queries"
 import { UserEntityToAuth } from "@/types"
 import { useRef } from "react"
 import { useAuth } from "@/hooks/useAuth"
-import { LogInFormSchema } from "@/constants/authSchemas"
+import { LogInFormSchema } from "@/constants/schemas"
 
 export const LogIn = () => {
   const userRef = useRef<UserEntityToAuth>()
@@ -103,7 +103,7 @@ export const LogIn = () => {
             )}
           />
           <Button type="submit" disabled={isLoading}>
-            Submit
+            Log in
           </Button>
         </form>
       </div>

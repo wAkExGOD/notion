@@ -1,5 +1,6 @@
 import { deleteNote as deleteNoteMutation } from "@/api/mutations"
 import { Button, Card } from "@/components/ui"
+import { useNotes } from "@/hooks/useNotes"
 import { toast } from "@/hooks/useToast"
 import { formatDate } from "@/lib/formatDate"
 import { routes } from "@/lib/routes"
@@ -13,7 +14,9 @@ type NoteProps = {
 }
 
 export const Note: React.FC<NoteProps> = ({ data }) => {
-  const { id, title, createdAt } = data
+  const { refetchNotes } = useNotes()
+
+  const { id, name, createdAt } = data
 
   const { mutate: deleteNote } = useMutation({
     mutationFn: deleteNoteMutation,
@@ -22,7 +25,7 @@ export const Note: React.FC<NoteProps> = ({ data }) => {
         title: `You have successfully deleted note #${id}`,
       })
 
-      // update notes there
+      refetchNotes()
     },
     onError: (error) =>
       toast({
@@ -40,7 +43,7 @@ export const Note: React.FC<NoteProps> = ({ data }) => {
   return (
     <Card className="flex flex-row items-center gap-4">
       <div className="flex flex-col gap-2">
-        <h2 className="font-medium text-xl">{title}</h2>
+        <h2 className="font-medium text-xl">{name}</h2>
         <span className="text-gray-500">{formatDate(createdAt, false)}</span>
       </div>
       <div className="ml-auto flex gap-2">

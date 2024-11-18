@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 const MIN_PASSWORD_LENGTH = 8
+const MIN_NOTE_NAME_LENGTH = 2
 
 const MESSAGES = {
   EMAIL_INVALID: "Email must be valid",
@@ -33,3 +34,8 @@ export const RegistrationFormSchema = z
     message: MESSAGES.PASSWORDS_NOT_MATCH,
     path: ["repeatPassword"],
   })
+
+export const CreateNoteFormSchema = z.object({
+  name: z.string().min(MIN_NOTE_NAME_LENGTH),
+  text: z.string(),
+})
