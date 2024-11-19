@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui"
 import { AuthProvider } from "@/hooks/useAuth"
 import { NotesProvider } from "@/hooks/useNotes"
 import { Header } from "./Header"
+import { Footer } from "./Footer"
 
 export const Root = () => {
   return (
@@ -13,6 +14,7 @@ export const Root = () => {
           <div className="w-[1300px] max-w-full mx-auto px-4 py-6">
             <Outlet />
           </div>
+          <Footer />
         </div>
         <Toaster />
       </NotesProvider>

@@ -9,7 +9,9 @@ export const routes = {
     create: "/notes/create",
     edit: {
       template: "/notes/edit/:id",
-      create: (id: NoteEntity["id"]) => `/notes/edit/${id}`,
+      _create: (id: NoteEntity["id"]) => `/notes/edit/${id}`,
     },
+    template: "/notes/:id",
+    _create: (id: NoteEntity["id"]) => `/notes/${id}`,
   },
 } as const

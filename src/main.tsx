@@ -10,6 +10,7 @@ import {
   Notes,
   CreateNote,
   EditNote,
+  Note,
 } from "./pages"
 import { routes } from "./lib/routes"
 import "./index.css"
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Notes />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: routes.notes.template,
+        element: (
+          <ProtectedRoute>
+            <Note />
           </ProtectedRoute>
         ),
       },
