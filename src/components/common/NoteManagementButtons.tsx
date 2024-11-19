@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
-import { Delete, Edit2 } from "lucide-react"
+import { Pencil, Trash } from "lucide-react"
 
 import {
   AlertDialog,
@@ -27,6 +27,7 @@ type NoteManagementButtonsProps = {
 export const NoteManagementButtons: React.FC<NoteManagementButtonsProps> = ({
   noteId,
 }) => {
+  const navigate = useNavigate()
   const { refetchNotes } = useNotes()
 
   const { mutate: deleteNote } = useMutation({
@@ -37,6 +38,8 @@ export const NoteManagementButtons: React.FC<NoteManagementButtonsProps> = ({
       })
 
       refetchNotes()
+
+      navigate(routes.notes.root)
     },
     onError: (error) =>
       toast({
@@ -50,13 +53,13 @@ export const NoteManagementButtons: React.FC<NoteManagementButtonsProps> = ({
     <div className="ml-auto flex gap-2">
       <Link to={routes.notes.edit._create(noteId)}>
         <Button size="icon" variant="secondary">
-          <Edit2 />
+          <Pencil />
         </Button>
       </Link>
       <AlertDialog>
-        <AlertDialogTrigger>
+        <AlertDialogTrigger asChild>
           <Button size="icon" variant="secondary">
-            <Delete />
+            <Trash />
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>

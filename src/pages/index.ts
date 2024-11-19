@@ -1,5 +1,6 @@
-export * from "./CreateNote/CreateNote"
-export * from "./EditNote/EditNote"
+// export * from "./CreateNote/CreateNote"
+// export * from "./EditNote/EditNote"
+export * from "./ManageNote"
 export * from "./Error/Error"
 export * from "./Home/Home"
 export * from "./LogIn/LogIn"

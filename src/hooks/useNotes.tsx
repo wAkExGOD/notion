@@ -1,23 +1,13 @@
 import { getNotes } from "@/api/queries"
-import { SORTINGS } from "@/constants/sortings"
-import { isSubstring } from "@/lib/isSubstring"
-import { NoteEntity, NoteFilters } from "@/types"
+import { NoteEntity } from "@/types"
 import { useQuery } from "@tanstack/react-query"
-import {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import { PropsWithChildren, createContext, useContext } from "react"
 import { useAuth } from "./useAuth"
 
 export type NotesContextType = {
   isLoading: boolean
   error: Error | null
-  filteredNotes: NoteEntity[]
-  filterValues: NoteFilters
-  setFilterValues: React.Dispatch<React.SetStateAction<NoteFilters>>
+  notes?: NoteEntity[]
   refetchNotes: () => void
 }
 
@@ -35,66 +25,13 @@ const NotesProvider = ({ children }: PropsWithChildren) => {
     queryFn: () => getNotes(user.id),
   })
 
-  const [filterValues, setFilterValues] = useState<NoteFilters>({
-    searchValue: "",
-    sorting: SORTINGS.firstNew,
-  })
-  const [filteredNotes, setFilteredNotes] = useState<NoteEntity[]>([])
-
-  const filters: ((notes: NoteEntity[]) => NoteEntity[])[] = [
-    (notes) => {
-      const { searchValue } = filterValues
-
-      if (!searchValue) {
-        return notes
-      }
-
-      return notes.filter((note) => isSubstring(note.name, searchValue))
-    },
-    (notes) => {
-      const { sorting } = filterValues
-
-      let sortFn: (a: NoteEntity, b: NoteEntity) => number
-
-      switch (sorting) {
-        case SORTINGS.firstNew:
-          sortFn = (a, b) => a.createdAt - b.createdAt
-          break
-        default:
-          sortFn = (a, b) => a.createdAt - b.createdAt
-          break
-      }
-
-      notes.sort(sortFn)
-
-      return notes
-    },
-  ]
-
-  useEffect(() => {
-    if (!notes) {
-      return
-    }
-
-    const filteredNotes = filters.reduce(
-      (notes, filter) => filter(notes),
-      [...notes]
-    )
-
-    setFilteredNotes(filteredNotes)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterValues, notes])
-
   return (
     <NotesContext.Provider
       value={{
         isLoading,
         error,
+        notes,
         refetchNotes,
-        filterValues,
-        filteredNotes,
-        setFilterValues,
       }}
     >
       {children}

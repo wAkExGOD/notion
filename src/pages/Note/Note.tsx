@@ -1,13 +1,11 @@
 import { getNote } from "@/api/queries"
-import { NoteManagementButtons } from "@/components/common"
-import { Button, Textarea } from "@/components/ui"
+import { PagesNavigation } from "@/components/common"
+import { Textarea } from "@/components/ui"
 import { useQuery } from "@tanstack/react-query"
-import { ChevronLeft } from "lucide-react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 export const Note = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
 
   const {
     data: note,
@@ -33,14 +31,9 @@ export const Note = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between gap-2">
-        <Button variant="outline" size="icon" onClick={() => navigate(-1)}>
-          <ChevronLeft />
-        </Button>
-        <NoteManagementButtons noteId={note.id} />
-      </div>
+      <PagesNavigation noteId={note.id} />
       <h1 className="font-bold text-2xl text-center">{note.name}</h1>
-      <Textarea value={note.text} rows={7} className="mt-2" />
+      <Textarea value={note.text} rows={7} readOnly className="mt-2" />
     </div>
   )
 }

@@ -18,7 +18,7 @@ export const Note: React.FC<NoteProps> = ({ data }) => {
         <Link to={routes.notes._create(id)}>
           <h2 className="font-medium text-xl">{name}</h2>
         </Link>
-        <span className="text-gray-500">{formatDate(createdAt, false)}</span>
+        <span className="text-gray-500">{formatDate(createdAt, true)}</span>
       </div>
       <NoteManagementButtons noteId={id} />
     </Card>

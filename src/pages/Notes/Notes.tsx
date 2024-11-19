@@ -6,18 +6,14 @@ import { Note } from "./Note"
 import { useNotes } from "@/hooks/useNotes"
 
 export const Notes = () => {
-  const { error, isLoading, filteredNotes } = useNotes()
+  const { error, isLoading, notes } = useNotes()
 
-  if (isLoading) {
-    return <NoteSkeletons />
+  if (!notes && !isLoading) {
+    return <p className="text-destructive">Can't get notes</p>
   }
 
   if (error) {
     return <p className="text-destructive">{error.message}</p>
-  }
-
-  if (!filteredNotes) {
-    return <p className="text-destructive">Can't get notes</p>
   }
 
   return (
@@ -26,11 +22,16 @@ export const Notes = () => {
       <Link to={routes.notes.create}>
         <Button>Create note</Button>
       </Link>
-      <div className="flex flex-col w-full gap-2">
-        {filteredNotes.map((note) => (
-          <Note key={note.id} data={note} />
-        ))}
-      </div>
+      {isLoading && <NoteSkeletons />}
+      {!isLoading && notes && (
+        <div className="flex flex-col w-full gap-2">
+          {notes
+            .sort((a, b) => b.createdAt - a.createdAt)
+            .map((note) => (
+              <Note key={note.id} data={note} />
+            ))}
+        </div>
+      )}
     </div>
   )
 }
