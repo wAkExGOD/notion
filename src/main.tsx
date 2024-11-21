@@ -29,15 +29,16 @@ const router = createBrowserRouter([
   {
     path: routes.home,
     element: <Root />,
-    errorElement: <Error />,
     children: [
       {
         path: routes.logIn,
         element: <LogIn />,
+        errorElement: <Error />,
       },
       {
         path: routes.registration,
         element: <Registration />,
+        errorElement: <Error />,
       },
       {
         path: routes.home,
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
             <Home />
           </ProtectedRoute>
         ),
+        errorElement: <Error />,
       },
       {
         path: routes.notes.root,
@@ -54,6 +56,7 @@ const router = createBrowserRouter([
             <Notes />
           </ProtectedRoute>
         ),
+        errorElement: <Error />,
       },
       {
         path: routes.notes.template,
@@ -62,6 +65,7 @@ const router = createBrowserRouter([
             <Note />
           </ProtectedRoute>
         ),
+        errorElement: <Error />,
       },
       {
         path: routes.notes.create,
@@ -70,6 +74,7 @@ const router = createBrowserRouter([
             <CreateNote />
           </ProtectedRoute>
         ),
+        errorElement: <Error />,
       },
       {
         path: routes.notes.edit.template,
@@ -78,6 +83,7 @@ const router = createBrowserRouter([
             <EditNote />
           </ProtectedRoute>
         ),
+        errorElement: <Error />,
       },
     ],
   },
