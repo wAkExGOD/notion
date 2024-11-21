@@ -5,7 +5,7 @@ import { NotesProvider } from "@/hooks/useNotes"
 import { Header } from "./Header"
 import { Footer } from "./Footer"
 
-export const Root = () => {
+export const RootLayout = () => {
   return (
     <AuthProvider>
       <NotesProvider>

@@ -22,11 +22,11 @@ export const Note = () => {
   }
 
   if (error) {
-    return <p className="destructive">Error loading note</p>
+    return <p className="text-red-500">There is no such note</p>
   }
 
   if (!note) {
-    return <p className="destructive">Can't load note #{id}</p>
+    return <p className="text-red-500">Can't load note #{id}</p>
   }
 
   return (

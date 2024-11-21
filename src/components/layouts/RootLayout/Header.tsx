@@ -13,8 +13,12 @@ export const Header = () => {
   const { user, logout } = useAuth()
 
   const authButton = user ? (
-    <Button variant="outline" onClick={() => logout()}>
-      <a>Log out</a>
+    <Button
+      variant="outline"
+      className="cursor-pointer"
+      onClick={() => logout()}
+    >
+      Log out
     </Button>
   ) : (
     <Link to={routes.logIn}>
@@ -25,25 +29,24 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border",
-        "px-8 py-4 flex flex-row-reverse items-center gap-10"
+        "sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        "px-8 py-4 flex flex-row-reverse items-center gap-6"
       )}
     >
       {authButton}
-      <ul className="flex gap-4">
+      <div className="flex gap-4">
         {headerLinks.map(({ link, label }) => (
-          <li key={link}>
-            <NavLink
-              to={link}
-              className={({ isActive }) =>
-                cn("text-gray-400", isActive && "text-white")
-              }
-            >
-              {label}
-            </NavLink>
-          </li>
+          <NavLink
+            key={link}
+            to={link}
+            className={({ isActive }) =>
+              cn("text-gray-400 leading-loose", isActive && "text-white")
+            }
+          >
+            {label}
+          </NavLink>
         ))}
-      </ul>
+      </div>
     </header>
   )
 }

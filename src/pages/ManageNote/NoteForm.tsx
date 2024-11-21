@@ -49,12 +49,14 @@ export const NoteForm: React.FC<NoteFormProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.initialValues])
 
+  const isEditForm = Boolean(props.initialValues)
+
   return (
     <div className="flex flex-col gap-2">
       <PagesNavigation />
       <Form {...form}>
         <div className="flex flex-col items-center gap-4">
-          <Heading>{props.initialValues ? "Update" : "Create"} note</Heading>
+          <Heading>{isEditForm ? "Edit" : "Create"} note</Heading>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6"
@@ -86,7 +88,7 @@ export const NoteForm: React.FC<NoteFormProps> = (props) => {
               )}
             />
             <Button type="submit" disabled={props.processing}>
-              Create
+              {isEditForm ? "Save" : "Create"}
             </Button>
           </form>
         </div>

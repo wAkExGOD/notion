@@ -21,11 +21,13 @@ export const User = () => {
   }
 
   if (error) {
-    return <p className="text-destructive">{error.message}</p>
+    return <p className="text-red-500">{error.message}</p>
   }
 
   if (!user) {
-    return <div>Unexpected error. No data was received</div>
+    return (
+      <div className="text-red-500">Unexpected error. No data was received</div>
+    )
   }
 
   return (
@@ -41,7 +43,6 @@ export const User = () => {
           </p>
         </div>
       </div>
-      {/* <Albums userId={user.id} /> */}
     </div>
   )
 }

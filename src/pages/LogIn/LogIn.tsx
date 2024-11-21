@@ -33,7 +33,7 @@ export const LogIn = () => {
   })
   const { login } = useAuth()
 
-  const { isLoading, refetch } = useQuery({
+  const { isLoading, refetch: logInUser } = useQuery({
     staleTime: 0,
     enabled: Boolean(userRef?.current?.email),
     queryKey: ["logInUser"],
@@ -67,7 +67,8 @@ export const LogIn = () => {
 
   const onSubmit = async (user: z.infer<typeof LogInFormSchema>) => {
     userRef.current = user
-    refetch()
+
+    logInUser()
   }
 
   return (
@@ -76,7 +77,7 @@ export const LogIn = () => {
         <Heading>Log in</Heading>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-2/3 space-y-6"
+          className="w-full space-y-4 md:w-2/3"
         >
           <FormField
             control={form.control}
@@ -107,7 +108,7 @@ export const LogIn = () => {
           <Button type="submit" disabled={isLoading}>
             Log in
           </Button>
-          <div className="text-center opacity-70">
+          <div className="text-center text-muted-foreground">
             Don't have an account?{" "}
             <Link to={routes.registration} className="underline">
               Register

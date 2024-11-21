@@ -7,8 +7,8 @@ import { useAuth } from "./useAuth"
 export type NotesContextType = {
   isLoading: boolean
   error: Error | null
+  refetch: () => void
   notes?: NoteEntity[]
-  refetchNotes: () => void
 }
 
 const NotesContext = createContext<NotesContextType | null>(null)
@@ -19,7 +19,7 @@ const NotesProvider = ({ children }: PropsWithChildren) => {
     data: notes,
     isLoading,
     error,
-    refetch: refetchNotes,
+    refetch,
   } = useQuery({
     queryKey: ["notes"],
     queryFn: () => getNotes(user.id),
@@ -31,7 +31,7 @@ const NotesProvider = ({ children }: PropsWithChildren) => {
         isLoading,
         error,
         notes,
-        refetchNotes,
+        refetch,
       }}
     >
       {children}

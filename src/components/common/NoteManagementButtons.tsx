@@ -28,7 +28,7 @@ export const NoteManagementButtons: React.FC<NoteManagementButtonsProps> = ({
   noteId,
 }) => {
   const navigate = useNavigate()
-  const { refetchNotes } = useNotes()
+  const { refetch: refetchNotes } = useNotes()
 
   const { mutate: deleteNote } = useMutation({
     mutationFn: deleteNoteMutation,

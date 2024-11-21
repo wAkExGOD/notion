@@ -20,10 +20,10 @@ import { useAuth } from "@/hooks/useAuth"
 import { RegistrationFormSchema } from "@/constants/schemas"
 import { getUsersByEmail } from "@/api/queries"
 
-type User = z.infer<typeof RegistrationFormSchema>
+type UserValues = z.infer<typeof RegistrationFormSchema>
 
 export const Registration = () => {
-  const form = useForm<User>({
+  const form = useForm<UserValues>({
     resolver: zodResolver(RegistrationFormSchema),
     defaultValues: {
       email: "",
@@ -53,11 +53,9 @@ export const Registration = () => {
       }),
   })
 
-  const onSubmit = async (user: User) => {
+  const onSubmit = async (user: UserValues) => {
     try {
       const users = await getUsersByEmail(user.email)
-
-      console.log(users)
 
       if (!users) {
         throw new Error("Something went wrong")
@@ -83,10 +81,10 @@ export const Registration = () => {
   return (
     <Form {...form}>
       <div className="flex flex-col items-center gap-4">
-        <Heading>Registration</Heading>
+        <Heading>Sign up</Heading>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-2/3 space-y-4"
+          className="w-full space-y-4 md:w-2/3"
         >
           <FormField
             control={form.control}
@@ -130,7 +128,7 @@ export const Registration = () => {
           <Button type="submit" disabled={isPending}>
             Register
           </Button>
-          <div className="text-center opacity-70">
+          <div className="text-center text-muted-foreground">
             Already have an account?{" "}
             <Link to={routes.logIn} className="underline">
               Log in

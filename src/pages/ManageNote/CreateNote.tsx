@@ -9,19 +9,19 @@ import { routes } from "@/lib/routes"
 
 export const CreateNote = () => {
   const { user } = useAuth()
-  const { refetchNotes } = useNotes()
+  const { refetch: refetchNotes } = useNotes()
   const navigate = useNavigate()
 
   const { mutate: createNote, isPending } = useMutation({
     mutationFn: createNoteMutation,
-    onSuccess: () => {
+    onSuccess: (note) => {
       toast({
         title: "You have successfully created a note",
       })
 
       refetchNotes()
 
-      navigate(routes.notes.root)
+      navigate(routes.notes._create(note.id))
     },
     onError: (error) =>
       toast({
