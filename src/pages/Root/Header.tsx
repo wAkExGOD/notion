@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { routes } from "@/lib/routes"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/hooks/useAuth"
@@ -10,7 +10,17 @@ const headerLinks = [
 ] as const
 
 export const Header = () => {
-  const { logout } = useAuth()
+  const { user, logout } = useAuth()
+
+  const authButton = user ? (
+    <Button variant="outline" onClick={() => logout()}>
+      <a>Log out</a>
+    </Button>
+  ) : (
+    <Link to={routes.logIn}>
+      <Button variant="outline">Log in</Button>
+    </Link>
+  )
 
   return (
     <header
@@ -19,9 +29,7 @@ export const Header = () => {
         "px-8 py-4 flex flex-row-reverse items-center gap-10"
       )}
     >
-      <Button variant="outline" onClick={() => logout()}>
-        <a>Log out</a>
-      </Button>
+      {authButton}
       <ul className="flex gap-4">
         {headerLinks.map(({ link, label }) => (
           <li key={link}>

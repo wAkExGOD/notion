@@ -19,6 +19,8 @@ import { UserEntityToAuth } from "@/types"
 import { useRef } from "react"
 import { useAuth } from "@/hooks/useAuth"
 import { LogInFormSchema } from "@/constants/schemas"
+import { Link } from "react-router-dom"
+import { routes } from "@/lib/routes"
 
 export const LogIn = () => {
   const userRef = useRef<UserEntityToAuth>()
@@ -83,7 +85,7 @@ export const LogIn = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Email" {...field} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -96,7 +98,7 @@ export const LogIn = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" type="password" {...field} />
+                  <Input type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,6 +107,12 @@ export const LogIn = () => {
           <Button type="submit" disabled={isLoading}>
             Log in
           </Button>
+          <div className="text-center opacity-70">
+            Don't have an account?{" "}
+            <Link to={routes.registration} className="underline">
+              Register
+            </Link>
+          </div>
         </form>
       </div>
     </Form>

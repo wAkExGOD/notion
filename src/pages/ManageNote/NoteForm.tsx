@@ -54,9 +54,7 @@ export const NoteForm: React.FC<NoteFormProps> = (props) => {
       <PagesNavigation />
       <Form {...form}>
         <div className="flex flex-col items-center gap-4">
-          <Heading>
-            {props.initialValues ? "Update" : "Create"} note
-          </Heading>
+          <Heading>{props.initialValues ? "Update" : "Create"} note</Heading>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6"
@@ -67,7 +65,7 @@ export const NoteForm: React.FC<NoteFormProps> = (props) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
-                  <FormControl>
+                  <FormControl autoFocus>
                     <Input {...field} />
                   </FormControl>
                   <FormMessage />

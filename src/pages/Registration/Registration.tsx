@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "@/hooks/useToast"
-import { Button, Heading } from "@/components/ui"
+import { Button, FormLabel, Heading } from "@/components/ui"
 import {
   Form,
   FormControl,
@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui"
 import { useMutation } from "@tanstack/react-query"
 import { register } from "@/api/mutations"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { routes } from "@/lib/routes"
 import { useAuth } from "@/hooks/useAuth"
 import { RegistrationFormSchema } from "@/constants/schemas"
@@ -93,8 +93,9 @@ export const Registration = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Email" {...field} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,8 +106,9 @@ export const Registration = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" type="password" {...field} />
+                  <Input type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -117,12 +119,9 @@ export const Registration = () => {
             name="repeatPassword"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Repeated password</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Repeat password"
-                    type="password"
-                    {...field}
-                  />
+                  <Input type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -131,6 +130,12 @@ export const Registration = () => {
           <Button type="submit" disabled={isPending}>
             Register
           </Button>
+          <div className="text-center opacity-70">
+            Already have an account?{" "}
+            <Link to={routes.logIn} className="underline">
+              Log in
+            </Link>
+          </div>
         </form>
       </div>
     </Form>
