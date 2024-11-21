@@ -1,7 +1,7 @@
 import { Link, useRouteError } from "react-router-dom"
 import { getErrorMessage } from "./errorMessage"
 import { routes } from "@/lib/routes"
-import { Button } from "@/components/ui"
+import { Button, Heading } from "@/components/ui"
 
 export const Error = () => {
   const error = useRouteError()
@@ -10,9 +10,9 @@ export const Error = () => {
   return (
     <div className="h-[100dvh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-10">
-        <h1 className="font-bold text-6xl text-center">
+        <Heading className="text-6xl">
           {errorMessage || "Oops! Error"}
-        </h1>
+        </Heading>
         <Link to={routes.home}>
           <Button size="lg" variant="secondary">
             Home page

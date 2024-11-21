@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui"
+import { Button, Heading } from "@/components/ui"
 import { Link } from "react-router-dom"
 import { routes } from "@/lib/routes"
 import { NoteSkeletons } from "./NoteSkeletons"
@@ -18,7 +18,7 @@ export const Notes = () => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <h1 className="font-bold text-2xl">Notes</h1>
+      <Heading>Notes</Heading>
       <Link to={routes.notes.create}>
         <Button>Create note</Button>
       </Link>

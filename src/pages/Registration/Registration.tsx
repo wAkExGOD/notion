@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "@/hooks/useToast"
-import { Button } from "@/components/ui"
+import { Button, Heading } from "@/components/ui"
 import {
   Form,
   FormControl,
@@ -18,9 +18,12 @@ import { useNavigate } from "react-router-dom"
 import { routes } from "@/lib/routes"
 import { useAuth } from "@/hooks/useAuth"
 import { RegistrationFormSchema } from "@/constants/schemas"
+import { getUsersByEmail } from "@/api/queries"
+
+type User = z.infer<typeof RegistrationFormSchema>
 
 export const Registration = () => {
-  const form = useForm<z.infer<typeof RegistrationFormSchema>>({
+  const form = useForm<User>({
     resolver: zodResolver(RegistrationFormSchema),
     defaultValues: {
       email: "",
@@ -50,14 +53,37 @@ export const Registration = () => {
       }),
   })
 
-  const onSubmit = async (user: z.infer<typeof RegistrationFormSchema>) => {
-    registerUser(user)
+  const onSubmit = async (user: User) => {
+    try {
+      const users = await getUsersByEmail(user.email)
+
+      console.log(users)
+
+      if (!users) {
+        throw new Error("Something went wrong")
+      }
+
+      if (users.length > 0) {
+        throw new Error(
+          "Registration failed. User with this E-mail is already existing"
+        )
+      }
+
+      registerUser(user)
+    } catch (error) {
+      const errorMessage = (error as Error).message
+
+      return toast({
+        title: errorMessage,
+        variant: "destructive",
+      })
+    }
   }
 
   return (
     <Form {...form}>
       <div className="flex flex-col items-center gap-4">
-        <h1 className="font-bold text-2xl">Registration</h1>
+        <Heading>Registration</Heading>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-2/3 space-y-4"

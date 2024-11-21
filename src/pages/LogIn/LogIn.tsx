@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "@/hooks/useToast"
-import { Button } from "@/components/ui"
+import { Button, Heading } from "@/components/ui"
 import {
   Form,
   FormControl,
@@ -71,7 +71,7 @@ export const LogIn = () => {
   return (
     <Form {...form}>
       <div className="flex flex-col items-center gap-4">
-        <h1 className="font-bold text-2xl">Log in</h1>
+        <Heading>Log in</Heading>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-2/3 space-y-6"

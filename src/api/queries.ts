@@ -22,3 +22,7 @@ export function getNotes(userId: UserEntity["id"]) {
 export function getUser(id: UserEntity["id"]) {
   return request<UserEntity>(`/users/${id}`)
 }
+
+export function getUsersByEmail(email: UserEntity["email"]) {
+  return request<UserEntity[]>(`/users?email=${email}`)
+}

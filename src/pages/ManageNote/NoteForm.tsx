@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Button, Textarea } from "@/components/ui"
+import { Button, Heading, Textarea } from "@/components/ui"
 import {
   Form,
   FormControl,
@@ -54,9 +54,9 @@ export const NoteForm: React.FC<NoteFormProps> = (props) => {
       <PagesNavigation />
       <Form {...form}>
         <div className="flex flex-col items-center gap-4">
-          <h1 className="font-bold text-2xl">
+          <Heading>
             {props.initialValues ? "Update" : "Create"} note
-          </h1>
+          </Heading>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6"

@@ -1,6 +1,6 @@
 import { getNote } from "@/api/queries"
 import { PagesNavigation } from "@/components/common"
-import { Textarea } from "@/components/ui"
+import { Heading, Textarea } from "@/components/ui"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 
@@ -32,7 +32,7 @@ export const Note = () => {
   return (
     <div className="flex flex-col gap-4">
       <PagesNavigation noteId={note.id} />
-      <h1 className="font-bold text-2xl text-center">{note.name}</h1>
+      <Heading>{note.name}</Heading>
       <Textarea value={note.text} rows={7} readOnly className="mt-2" />
     </div>
   )

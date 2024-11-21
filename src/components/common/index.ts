@@ -1,4 +1,3 @@
-export * from "./AlbumItem"
+export * from "./NoteManagementButtons"
 export * from "./PagesNavigation"
 export * from "./ProtectedRoute"
-export * from "./NoteManagementButtons"

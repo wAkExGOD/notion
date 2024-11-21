@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui"
+import { Button, Heading } from "@/components/ui"
 import { useAuth } from "@/hooks/useAuth"
 import { formatDate } from "@/lib/formatDate"
 import { routes } from "@/lib/routes"
@@ -9,7 +9,7 @@ export const Home = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-bold text-2xl">About me</h1>
+      <Heading>About me</Heading>
       <ul className="flex flex-col gap-2">
         <li className="space-x-1">
           <b>Email:</b>

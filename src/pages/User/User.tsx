@@ -1,4 +1,5 @@
 import { getUser } from "@/api/queries"
+import { Heading } from "@/components/ui"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 
@@ -30,7 +31,7 @@ export const User = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-3 p-4 rounded-xl border bg-zinc-950">
-        <h1 className="font-bold text-2xl">{user.id}</h1>
+        <Heading>{user.id}</Heading>
         <div className="flex flex-col gap-1 text-zinc-500">
           <p>
             Email:{" "}
