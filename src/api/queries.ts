@@ -11,7 +11,11 @@ export function getNote(id: NoteEntity["id"]) {
   return request<NoteEntity>(`/notes/${id}`)
 }
 
-export function getNotes(userId: UserEntity["id"]) {
+export function getNotes(userId?: UserEntity["id"]) {
+  if (!userId) {
+    return []
+  }
+
   const params = new URLSearchParams({
     userId,
   })

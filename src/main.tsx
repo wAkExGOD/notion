@@ -93,6 +93,10 @@ const router = createBrowserRouter([
       },
       ...authRoutes,
       ...noteRoutes,
+      {
+        path: "*",
+        element: <Error text="404 Not Found" />,
+      },
     ],
   },
 ])

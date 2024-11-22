@@ -33,7 +33,9 @@ export const Note = () => {
     <div className="flex flex-col gap-4">
       <PagesNavigation noteId={note.id} />
       <Heading>{note.name}</Heading>
-      <Textarea value={note.text} rows={7} readOnly className="mt-2" />
+      {note.text && (
+        <Textarea value={note.text} rows={7} readOnly className="mt-2" />
+      )}
     </div>
   )
 }

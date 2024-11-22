@@ -21,8 +21,9 @@ const NotesProvider = ({ children }: PropsWithChildren) => {
     error,
     refetch,
   } = useQuery({
+    enabled: Boolean(user?.id),
     queryKey: ["notes"],
-    queryFn: () => getNotes(user.id),
+    queryFn: () => getNotes(user?.id),
   })
 
   return (

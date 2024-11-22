@@ -5,7 +5,7 @@ import { UserEntity, UserEntityToAuth } from "@/types"
 import { routes } from "@/lib/routes"
 
 type AuthContextType = {
-  user: UserEntity
+  user: UserEntity | null
   login: (user: UserEntity) => void
   logout: () => void
 }
