@@ -67,7 +67,7 @@ export const Registration = () => {
         )
       }
 
-      registerUser(user)
+      registerUser({ email: user.email, password: user.password })
     } catch (error) {
       const errorMessage = (error as Error).message
 

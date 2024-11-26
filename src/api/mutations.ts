@@ -10,7 +10,11 @@ import {
 export function register(user: UserEntityToAuth) {
   return request<UserEntity>("/users", {
     method: "POST",
-    body: JSON.stringify({ ...user, createdAt: Date.now() }),
+    body: JSON.stringify({
+      email: user.email,
+      password: user.password,
+      createdAt: Date.now(),
+    }),
   })
 }
 
