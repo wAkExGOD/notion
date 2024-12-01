@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Notion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/user-attachments/assets/63b5a1c9-08d9-472c-88b3-9b16149b9517)
 
-Currently, two official plugins are available:
+## Project Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Notion is a web application developed using React and TypeScript, designed for note management.
+The project uses json-server to create a mock database and Tailwind CSS for styling, as well as the shadcn/ui library for the user interface.
 
-## Expanding the ESLint configuration
+## Application Pages
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The application includes the following pages:
 
-- Configure the top-level `parserOptions` property like this:
+- **Home Page**: `/`
+- **Registration**: `/registration`
+- **Log In**: `/log-in`
+- **Notes**:
+  - **Notes List**: `/notes`
+  - **Create Note**: `/notes/create`
+  - **Edit Note**: `/notes/edit/:id`
+  - **Note**: `/notes/:id`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation and Running
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To run the project, follow these steps:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Start the database (json-server):
+   ```bash
+   pnpm dev:db
+   ```
+2. Start the frontend:
+   ```bash
+   pnpm dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Technologies Used
+- **React**
+- **TypeScript**
+- **json-server**
+- **Tailwind CSS**
+- **shadcn/ui**
