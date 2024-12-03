@@ -7,6 +7,7 @@ import { NoteForm, NoteFormValues } from "./NoteForm"
 import { useNotes } from "@/hooks/useNotes"
 import { toast } from "@/hooks/useToast"
 import { routes } from "@/lib/routes"
+import { useEffect } from "react"
 
 export const EditNote = () => {
   const queryClient = useQueryClient()
@@ -45,8 +46,23 @@ export const EditNote = () => {
       }),
   })
 
+  useEffect(() => {
+    if (!note || !user) {
+      return
+    }
+
+    if (note.userId !== user.id) {
+      navigate(routes.notes.root)
+
+      toast({
+        title: "You don't have permission to access this note",
+        variant: "destructive",
+      })
+    }
+  }, [note])
+
   const handleSubmit = (editedNote: NoteFormValues) => {
-    if (!id) {
+    if (!id || !user) {
       return
     }
 
