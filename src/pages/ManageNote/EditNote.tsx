@@ -56,14 +56,9 @@ export const EditNote = () => {
     }
 
     if (note.userId !== user.id) {
-      navigate(routes.notes.root)
-
-      toast({
-        title: "You don't have permission to access this note",
-        variant: "destructive",
-      })
+      return navigate(routes.notFound, { replace: true })
     }
-  }, [note, error])
+  }, [note, error, user])
 
   const handleSubmit = (editedNote: NoteFormValues) => {
     if (!id || !user) {

@@ -2,7 +2,6 @@ import { getNote } from "@/api/queries"
 import { PagesNavigation } from "@/components/common"
 import { Heading, Textarea } from "@/components/ui"
 import { useAuth } from "@/hooks/useAuth"
-import { toast } from "@/hooks/useToast"
 import { routes } from "@/lib/routes"
 import { useQuery } from "@tanstack/react-query"
 import { useEffect } from "react"
@@ -33,14 +32,9 @@ export const Note = () => {
     }
 
     if (note.userId !== user.id) {
-      navigate(routes.notes.root)
-
-      toast({
-        title: "You don't have permission to access this note",
-        variant: "destructive",
-      })
+      return navigate(routes.notFound, { replace: true })
     }
-  }, [note, error])
+  }, [note, error, user])
 
   if (isLoading) {
     return <p>Loading note...</p>

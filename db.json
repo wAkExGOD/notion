@@ -1,26 +1,4 @@
 {
-  "notes": [
-    {
-      "id": "b023",
-      "name": "ntoe1",
-      "text": "text",
-      "userId": "8833",
-      "createdAt": 1733499411788
-    },
-    {
-      "id": "ec49",
-      "name": "note2",
-      "text": "qqq",
-      "userId": "8833",
-      "createdAt": 1733499432882
-    }
-  ],
-  "users": [
-    {
-      "id": "8833",
-      "email": "test1@mail.ru",
-      "password": "11111111Aa",
-      "createdAt": 1733499389868
-    }
-  ]
+  "notes": [],
+  "users": []
 }

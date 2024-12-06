@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useContext, useMemo } from "react"
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useMemo,
+  useState,
+} from "react"
 import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "./useLocalStorage"
 import { UserEntity } from "@/types"
@@ -17,6 +23,7 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [userId, setUserId] = useLocalStorage("userId", null)
+  const [willRedirect, setWillRedirect] = useState(false)
   const navigate = useNavigate()
 
   const { data: user, isLoading } = useQuery({
@@ -34,7 +41,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
           return null
         }
 
-        navigate(routes.home)
+        if (willRedirect) {
+          navigate(routes.home)
+        }
 
         return user
       } catch {
@@ -47,6 +56,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const login = async (user: UserEntity) => {
     setUserId(user.id)
+    setWillRedirect(true)
   }
 
   const logout = () => {
