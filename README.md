@@ -18,7 +18,6 @@ The application has the following routes:
 ## Technologies Used
 - **React**
 - **TypeScript**
-- **Redux**
 - **React Hook Form**
 - **Zod**
 - **React Router**
