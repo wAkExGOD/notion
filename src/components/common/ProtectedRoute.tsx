@@ -6,6 +6,10 @@ import { routes } from "@/lib/routes"
 export const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const auth = useAuth()
 
+  if (auth.isLoading) {
+    return null
+  }
+
   if (!auth?.user) {
     return <Navigate to={routes.logIn} />
   }

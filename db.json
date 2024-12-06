@@ -1,48 +1,26 @@
 {
   "notes": [
     {
-      "id": "4b9q",
-      "name": "Title of the note #2",
-      "text": "Lorem ipsum ...",
-      "userId": "110a",
-      "createdAt": 1731811231835
-    },
-    {
-      "id": "1775",
-      "name": "Note2",
-      "text": "Text of note 2",
-      "userId": "510d",
-      "createdAt": 1732045332396
-    },
-    {
-      "id": "6934",
-      "name": "Note555",
-      "text": "TEXT\n  IS\n    HERE\n\nWOW!                                  a\n",
-      "userId": "510d",
-      "createdAt": 1732051280815
-    },
-    {
-      "id": "1612",
-      "name": "Note6",
-      "text": "note 6 text",
-      "userId": "510d",
-      "createdAt": 1732221963858
-    },
-    {
-      "id": "f839",
-      "name": "Note7",
+      "id": "b023",
+      "name": "ntoe1",
       "text": "text",
-      "userId": "410c",
-      "createdAt": 1732221989976
+      "userId": "8833",
+      "createdAt": 1733499411788
+    },
+    {
+      "id": "ec49",
+      "name": "note2",
+      "text": "qqq",
+      "userId": "8833",
+      "createdAt": 1733499432882
     }
   ],
   "users": [
     {
-      "id": "510d",
+      "id": "8833",
       "email": "test1@mail.ru",
-      "password": "12345678Aa",
-      "repeatPassword": "12345678Aa",
-      "createdAt": 1731910003838
+      "password": "11111111Aa",
+      "createdAt": 1733499389868
     }
   ]
 }

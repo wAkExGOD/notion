@@ -32,6 +32,10 @@ export const CreateNote = () => {
   })
 
   const handleSubmit = (note: NoteFormValues) => {
+    if (!user) {
+      return
+    }
+
     createNote({
       ...note,
       userId: user.id,

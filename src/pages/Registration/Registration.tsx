@@ -67,7 +67,11 @@ export const Registration = () => {
         )
       }
 
-      registerUser(user)
+      const { email, password } = user
+      registerUser({
+        email,
+        password,
+      })
     } catch (error) {
       const errorMessage = (error as Error).message
 
@@ -93,7 +97,7 @@ export const Registration = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} autoFocus />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -14,4 +14,5 @@ export const routes = {
     template: "/notes/:id",
     _create: (id: NoteEntity["id"]) => `/notes/${id}`,
   },
+  notFound: "/404",
 } as const

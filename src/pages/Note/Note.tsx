@@ -24,6 +24,10 @@ export const Note = () => {
   })
 
   useEffect(() => {
+    if (error) {
+      return navigate(routes.notFound, { replace: true })
+    }
+
     if (!note || !user) {
       return
     }
@@ -36,14 +40,10 @@ export const Note = () => {
         variant: "destructive",
       })
     }
-  }, [note])
+  }, [note, error])
 
   if (isLoading) {
     return <p>Loading note...</p>
-  }
-
-  if (error) {
-    return <p className="text-red-500">There is no such note</p>
   }
 
   if (!note) {
